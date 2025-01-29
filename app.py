@@ -94,9 +94,12 @@ try:
     # Top 5 usuarios con más tareas completadas
     # nlargest() → Devuelve los n valores más grandes
     top_usuarios = tareas_hechas.groupby('id_usuario')['tarea'].count().nlargest(5)
-    
+    # para poder usar nlargest, tengo que pasarle una serie, diferente a un DataFrame. Eso se hace seleccionando la columna 'tarea'
+
+
     # Configurar gráfico de barras
     plt.figure(figsize=(7, 8))  # Tamaño de figura (ancho, alto en pulgadas)
+    # IMPORTANTE ESPECIFICAR EL PARAMETRO FIGSIZE
     
     # Crear gráfico
     top_usuarios.plot(
@@ -109,7 +112,7 @@ try:
     plt.title('Top 5 usuarios con más tareas completadas', fontweight='bold')
     plt.xlabel('ID de Usuario', fontsize=12)
     plt.ylabel('Tareas Completadas', fontsize=12)
-    plt.xticks(rotation=45)  # Rotar etiquetas eje X
+    plt.xticks(rotation=0)  # Rotar etiquetas eje X
     plt.grid(axis='y', linestyle='--', alpha=0.7)  # Grid horizontal
     
     # Mostrar gráfico
